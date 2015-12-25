@@ -1,0 +1,176 @@
+\\GAME VOLUME
+
+bind "f9" "vgdn"
+bind "f10" "vgup"
+
+alias "vgmin" "volume 0;echo |*________| VOLUME  0% MINIMUM!;alias vgup vg1;alias vgdn vgmin"
+alias "vg1" "volume 0.1;echo |_*_______| VOLUME  10%;alias vgup vg2;alias vgdn vgmin"
+alias "vg2" "volume 0.2;echo |__*______| VOLUME  20%;alias vgup vg4;alias vgdn vg1"
+alias "vg4" "volume 0.4;echo |___*_____| VOLUME  40%;alias vgup vg6;alias vgdn vg2"
+alias "vg6" "volume 0.6;echo |____*____| VOLUME  60%;alias vgup vg7;alias vgdn vg4"
+alias "vg7" "volume 0.7;echo |_____*___| VOLUME  70%;alias vgup vg8;alias vgdn vg6"
+alias "vg8" "volume 0.8;echo |______*__| VOLUME  80%;alias vgup vg9;alias vgdn vg7"
+alias "vg9" "volume 0.9;echo |_______*_| VOLUME  90%;alias vgup vg10;alias vgdn vg8"
+alias "vg10" "volume 1;echo  |________*| VOLUME  100% maximum;alias vgdn vg9"
+
+
+alias "vgup" "vg1"
+alias "vgdn" "vg1"
+
+//VOICE SCALE 
+
+bind "F12" "ngup"
+bind "f11" "ngdn"
+
+alias "ngmin" "voice_scale 0;echo  |*__________| VOICE   0% MINIMUM!;alias ngup ng1;alias ngdn ngmin"
+alias "ng1" "voice_scale 0.1;echo  |_*_________| VOICE  10%;alias ngup ng2;alias ngdn ngmin"
+alias "ng2" "voice_scale 0.2;echo  |__*________| VOICE  20%;alias ngup ng3;alias ngdn ng1"
+alias "ng3" "voice_scale 0.3;echo  |___*_______| VOICE  30%;alias ngup ng4;alias ngdn ng2"
+alias "ng4" "voice_scale 0.4;echo  |____*______| VOICE  40%;alias ngup ng5;alias ngdn ng3"
+alias "ng5" "voice_scale 0.5;echo  |_____*_____| VOICE  50%;alias ngup ng6;alias ngdn ng4"
+alias "ng6" "voice_scale 0.6;echo  |______*____| VOICE  60%;alias ngup ng7;alias ngdn ng5"
+alias "ng7" "voice_scale 0.7;echo  |_______*___| VOICE  70%;alias ngup ng8;alias ngdn ng6"
+alias "ng8" "voice_scale 0.8;echo  |________*__| VOICE  80%;alias ngup ng9;alias ngdn ng7"
+alias "ng9" "voice_scale 0.9;echo  |_________*_| VOICE  90%;alias ngup ng10;alias ngdn ng8"
+alias "ng10" "voice_scale 1;echo   |__________*| VOICE 100% MAXIMUM!;alias ngdn ng9"
+
+alias "ngup";"ng1"
+alias "ngdn";"ng1"
+
+\\128 TICK
+
+cl_cmdrate 128
+cl_updaterate 128
+
+\\CROSSHAIR
+
+cl_crosshair_drawoutline "0"
+cl_crosshair_dynamic_maxdist_splitratio "0.35"
+cl_crosshair_dynamic_splitalpha_innermod "1"
+cl_crosshair_dynamic_splitalpha_outermod "0.5"
+cl_crosshair_dynamic_splitdist "7"
+cl_crosshair_outlinethickness "1"
+cl_crosshairalpha "255"
+cl_crosshaircolor "5"
+cl_crosshaircolor_b "255"
+cl_crosshaircolor_g "0"
+cl_crosshaircolor_r "254"
+cl_crosshairdot "0"
+cl_crosshairgap "0"
+cl_crosshairgap_useweaponvalue "0"
+cl_crosshairscale "0"
+cl_crosshairsize "5"
+cl_crosshairstyle "4"
+cl_crosshairthickness "0.4"
+cl_crosshairusealpha "1"
+
+\\BUY BINDS
+
+
+bind "KP_INS" "buy p250"
+bind "KP_END" "buy ak47; buy m4a1"
+bind "KP_DOWNARROW" "buy vesthelm"
+bind "KP_PGDN" "buy smokegrenade"
+bind "KP_LEFTARROW" "buy flashbang"
+bind "KP_5" "buy molotov"
+bind "KP_RIGHTARROW" "buy hegrenade"
+bind "KP_HOME" "buy vest"
+bind "KP_UPARROW" "buy fiveseven; buy tec9"
+bind "KP_PGUP" "buy deagle"
+bind "KP_SLASH" "buy ump"
+bind "KP_MULTIPLY" "buy p90;"
+bind "KP_MINUS" "buy mac10; buy mp9"
+bind "KP_PLUS" "buy awp"
+bind "KP_ENTER" "buy famas"
+bind "KP_DEL" "buy defuser;"
+bind "," "buyammo1"
+bind "." "buyammo2"
+bind "/" "buy ump"
+
+//MISC
+
+bind "1" "slot1"
+bind "2" "slot2"
+bind "3" "slot3"
+bind "4" "slot4"
+bind "5" "slot5"
+bind "9" "slot9"
+bind "a" "+moveleft"
+bind "b" "toggle gameinstructor_enable"
+bind "c" "radio3"
+bind "d" "+moveright"
+bind "e" "+use"
+bind "f" "+lookatweapon"
+bind "g" "drop"
+bind "h" "+jumpthrow"
+bind "i" "bot_place"
+bind "m" "teammenu"
+bind "n" "callvote"
+bind "o" "demoui"
+bind "p" "buy Taser"
+bind "q" "lastinv"
+bind "r" "+reload"
+bind "s" "+back"
+bind "t" "noclip"
+bind "u" "messagemode2"
+bind "w" "+forward"
+bind "x" "radio2"
+bind "y" "say"
+bind "z" "radio1"
+bind "\" "slot11"
+bind "SPACE" "+jump"
+bind "TAB" "+showscores"
+bind "ESCAPE" "cancelselect"
+bind "DEL" "mute"
+bind "PAUSE" "pause"
+bind "SHIFT" "+speed"
+bind "ALT" "+voicerecord"
+bind "CTRL" "+duck"
+bind "RCTRL" "+altbinds"
+bind "F2" "vgdn"
+bind "F3" "vgup"
+bind "F4" "rebuy"
+bind "F5" "jpeg"
+bind "F6" "save quick"
+bind "F7" "load quick"
+bind "F8" "toggleconsole"
+bind "F9" "vgdn"
+bind "F10" "vgup"
+bind "F11" "ngdn"
+bind "F12" "ngup"
+bind "MOUSE1" "+attack"
+bind "MOUSE2" "+attack2"
+bind "MOUSE4" "slot7"
+bind "MOUSE5" "slot10"
+bind "MWHEELUP" "slot6"
+bind "MWHEELDOWN" "slot8"
+
+
+\\JUMP THROW
+
+echo |----Jump throw
+alias "+jumpthrow" "+jump;-attack"  
+alias "-jumpthrow" "-jump"  
+bind "H" "+jumpthrow"
+
+\\DISPLAY DAMAGE
+
+alias displaydamage "displaydamage_on"
+alias displaydamage_on "con_filter_text Damage Given To; con_filter_text_out Player:; con_filter_enable 2; developer 1; playvol buttons\blip1 0.5; alias displaydamage "displaydamage_off""
+alias displaydamage_off "con_filter_enable 0; developer 0; playvol buttons\blip2 0.5; alias displaydamage "displaydamage_on""
+displaydamage_off
+
+//ZOOM
+
+zoom_sensitivity_ratio_mouse 1
+
+//SENS
+
+sensitivity 1.7
+
+//RADAR
+
+cl_radar_always_centered "0"
+cl_radar_icon_scale_min "0.6"
+cl_radar_rotate "1"
+cl_radar_scale "0.4"
