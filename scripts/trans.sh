@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Need https://github.com/soimort/translate-shell
+# Need http://www.gnu.org/software/coreutils/tac
+# Need http://www.sourceforge.net/projects/conky〉
 
 while read new_line; do
     #echo "new_line: $new_line"
