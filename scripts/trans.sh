@@ -40,9 +40,9 @@ while read new_line; do
             echo "$player : $message"
             #echo "$message"
             #echo "$message" | trans -no-ansi -b
-            echo "$message" | trans -no-ansi -show-original-phonetics n -show-translation-phonetics n -show-prompt-message n -show-dictionary n -show-prompt-message n -show-alternatives n -show-original n
+            echo -n "$message" | trans -no-ansi -show-original-phonetics n -show-translation-phonetics n -show-prompt-message n -show-dictionary n -show-prompt-message n -show-alternatives n -show-original n 2>&1
+            echo "--------------------------------------------"
         done < <(echo -e "$lines_to_translate")
-    echo "--------------------------------------------"
     echo 
 fi
 done < /dev/stdin

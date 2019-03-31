@@ -23,7 +23,7 @@ if [ "$action" == "on" ]; then
     touch csgo/csgo_console.log
     echo "$(tail -n 5000 csgo/csgo_console.log)" > csgo/csgo_console.log
     #$term -e /bin/bash -c 'tail -f csgo/csgo_console.log || read -p "[Enter] to close."' &
-    eval 'while true; do conky -c ~/.conkyrc-csgo; done' &
+    eval 'while true; do LC_ALL=en_US.utf8 conky -c ~/.conkyrc-csgo; done' &
     eval_pid=$!
     echo $eval_pid >> pids
 
@@ -31,7 +31,7 @@ if [ "$action" == "on" ]; then
     touch csgo/csgo_console_talk.log
     #eval "tail -n 5000 -f csgo/csgo_console.log | grep ' : ' >> csgo/csgo_console_talk.log" &
     echo "$(tail -n 100 csgo/csgo_console_talk.log)" > csgo/csgo_console_talk.log
-    eval 'tail -f -n0 csgo/csgo_console.log  | while read line; do echo "$line" | grep " : \|trans.sh pls fix" >> csgo/csgo_console_talk.log 2>&1; done' &
+    eval 'tail -f -n0 csgo/csgo_console.log  | while read line; do echo "$line" | grep " : \|trans.sh pls fix" | sed "s/. : / : /" >> csgo/csgo_console_talk.log 2>&1; done' &
     eval_pid=$!
     #tail_pid=$(lsof -c tail | grep pipe | grep $(readlink /proc/$!/fd/0 | grep -o [0-9]*) | awk '{print $2}')
     echo $eval_pid >> pids
