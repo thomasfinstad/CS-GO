@@ -5,7 +5,7 @@
 while read new_line; do
     #echo "new_line: $new_line"
     if [[ "$new_line" == "trans.sh pls fix" ]]; then
-        echo "-=====New translation job $(date '+%F %T')=====================-"
+        echo "-============|||||||||||||||------------New translation job $(date '+%F %T')----------|||||||||||=====================-"
         you="$(cat csgo/csgo_console.log | tac | grep -iEo 'Player:.* - Damage ' | head -n1 | sed 's/^Player: \(.*\) - Damage $/\1/')"
 
         lines_processed=0
@@ -39,8 +39,8 @@ while read new_line; do
 
             echo "$player : $message"
             #echo "$message"
-            #echo "$message" | trans -no-ansi -b
-            echo -n "$message" | trans -no-ansi -show-original-phonetics n -show-translation-phonetics n -show-prompt-message n -show-dictionary n -show-prompt-message n -show-alternatives n -show-original n 2>&1
+            echo "$message" | trans -no-ansi -b
+            #echo -n "$message" | trans -no-ansi -show-original-phonetics n -show-translation-phonetics n -show-prompt-message n -show-dictionary n -show-prompt-message n -show-alternatives n -show-original n 2>&1
             echo "--------------------------------------------"
         done < <(echo -e "$lines_to_translate")
     echo 
