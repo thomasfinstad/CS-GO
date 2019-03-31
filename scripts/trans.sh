@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#trans -show-original-phonetics n -show-translation-phonetics n -show-prompt-message n -show-dictionary n -show-prompt-message n -show-alternatives n
+# Need https://github.com/soimort/translate-shell
 
 while read new_line; do
     #echo "new_line: $new_line"
