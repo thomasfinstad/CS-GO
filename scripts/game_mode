@@ -19,30 +19,27 @@ if [ "$action" == "on" ]; then
     nvidia-settings -l --config=~/.nvidia-settings-rc-csgo
     output "Nvidia: CSGO config"
 
-    echo "touch: csgo_console.log"
-    touch csgo/csgo_console.log
-    echo "$(tail -n 5000 csgo/csgo_console.log)" > csgo/csgo_console.log
-    #$term -e /bin/bash -c 'tail -f csgo/csgo_console.log || read -p "[Enter] to close."' &
-    eval 'while true; do LC_ALL=en_US.utf8 conky -c ~/.conkyrc-csgo; done' &
-    eval_pid=$!
-    echo $eval_pid >> pids
+#    echo "touch: csgo_console.log"
+#    touch csgo/csgo_console.log
+#    echo "$(tail -n 5000 csgo/csgo_console.log)" > csgo/csgo_console.log
+#    eval 'while true; do LC_ALL=en_US.utf8 conky -c ~/.conkyrc-csgo; done' &
+#    eval_pid=$!
+#    echo $eval_pid >> pids
 
-    echo "touch: csgo_console_talk.log"
-    touch csgo/csgo_console_talk.log
-    #eval "tail -n 5000 -f csgo/csgo_console.log | grep ' : ' >> csgo/csgo_console_talk.log" &
-    echo "$(tail -n 100 csgo/csgo_console_talk.log)" > csgo/csgo_console_talk.log
-    eval 'tail -f -n0 csgo/csgo_console.log  | while read line; do echo "$line" | grep " : \|trans.sh pls fix" | sed "s/. : / : /" >> csgo/csgo_console_talk.log 2>&1; done' &
-    eval_pid=$!
-    #tail_pid=$(lsof -c tail | grep pipe | grep $(readlink /proc/$!/fd/0 | grep -o [0-9]*) | awk '{print $2}')
-    echo $eval_pid >> pids
+#    echo "touch: csgo_console_talk.log"
+#    touch csgo/csgo_console_talk.log
+#    echo "$(tail -n 100 csgo/csgo_console_talk.log)" > csgo/csgo_console_talk.log
+#    eval 'tail -f -n0 csgo/csgo_console.log  | while read line; do echo "$line" | grep " : \|trans.sh pls fix" | sed "s/. : / : /" >> csgo/csgo_console_talk.log 2>&1; done' &
+#    eval_pid=$!
+#    echo $eval_pid >> pids
 
 
-    echo "touch: csgo_console_translate.log"
-    touch csgo/csgo_console_translate.log
-    echo "$(tail -n 30 csgo/csgo_console_translate.log)" > csgo/csgo_console_translate.log
-    eval 'tail -n0 -f csgo/csgo_console_talk.log | while read line; do echo "$line" | trans.sh >> csgo/csgo_console_translate.log 2>&1; done' &
-    eval_pid=$!
-    echo $eval_pid >> pids
+ #   echo "touch: csgo_console_translate.log"
+ #   touch csgo/csgo_console_translate.log
+ #   echo "$(tail -n 30 csgo/csgo_console_translate.log)" > csgo/csgo_console_translate.log
+ #   eval 'tail -n0 -f csgo/csgo_console_talk.log | while read line; do echo "$line" | trans.sh >> csgo/csgo_console_translate.log 2>&1; done' &
+ #   eval_pid=$!
+ #   echo $eval_pid >> pids
 
 
 elif [ "$action" == "off" ]; then
@@ -51,16 +48,16 @@ elif [ "$action" == "off" ]; then
     nvidia-settings -l --config=~/.nvidia-settings-rc
     output "Nvidia: Normal config"
 
-    echo "Killing background processes"
-    for ppid in $(cat pids); do
-        pstree -p $ppid
-        for pid in $(pgrep -P $ppid | tr ' ' '\n' | tac); do 
-            echo "killing child ($pid): $(cat /proc/$pid/cmdline | tr '\000' ' ')"
-            kill $pid
-        done
-        echo "killing parent ($ppid): $(cat /proc/$ppid/cmdline | tr '\000' ' ')"
-        kill $ppid
-    done
+#    echo "Killing background processes"
+#    for ppid in $(cat pids); do
+#        pstree -p $ppid
+#        for pid in $(pgrep -P $ppid | tr ' ' '\n' | tac); do 
+#            echo "killing child ($pid): $(cat /proc/$pid/cmdline | tr '\000' ' ')"
+#            kill $pid
+#        done
+#        echo "killing parent ($ppid): $(cat /proc/$ppid/cmdline | tr '\000' ' ')"
+#        kill $ppid
+#    done
 fi
 
 echo -e "Game mode: $action" "$message"

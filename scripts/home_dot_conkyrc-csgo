@@ -1,0 +1,75 @@
+-- vim: ts=4 sw=4 noet ai cindent syntax=lua
+--[[
+Conky, a system monitor, based on torsmo
+
+Any original torsmo code is licensed under the BSD license
+
+All code written since the fork of torsmo is licensed under the GPL
+
+Please see COPYING for details
+
+Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+Copyright (c) 2005-2012 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+All rights reserved.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+]]
+
+conky.config = {
+	
+	update_interval = 1,
+	out_to_console = false,
+	double_buffer = true,
+	no_buffers = true,
+	text_buffer_size = 32768,
+	imlib_cache_size = 0,
+	own_window = true,
+	own_window_type = 'normal',
+	own_window_argb_visual = true,
+	own_window_argb_value = 0,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+	border_inner_margin = 5,
+	border_outer_margin = 0,
+	xinerama_head = 1,
+	gap_x = 500,
+	gap_y = 33,
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = true,
+	override_utf8_locale = true,
+	use_xft = true,
+	font = 'Ubuntu Mono:size=18',
+	ftalpha = 0.8,
+	uppercase = false,
+	default_color = 'white',
+	own_window_colour = '#000000',
+	minimum_width = 800, minimum_height = 1300,
+	maximum_width = 800, maximum_height = 1300,
+	alignment = 'bottom_right',
+
+};
+
+conky.text = [[
+${font Ubuntu:normal:size=12}${texeci 60 grep -iEo 'Player:.* - Damage ' csgo/csgo_console.log | sort | uniq | sed 's/^\(Player: .*\) - Damage $/\1/'}
+${font Ubuntu:bold:size=20}Console Log Size ${hr 2}
+#${font Ubuntu:normal:size=12}${execi 1 tail -n 30 csgo/csgo_console.log}
+${font Ubuntu:normal:size=12}${execi 5 ls -lh csgo/csgo_console.log}
+
+${font Ubuntu:bold:size=18}Console Talk ${hr 2}
+${font Noto Sans CJK TC:normal:size=10}${execi 1 tail -n 10 csgo/csgo_console_talk.log}
+
+${font Ubuntu:bold:size=18}Console Translate ${hr 2}
+${font Noto Sans CJK TC:normal:size=10}${execi 1 tail -n 40 csgo/csgo_console_translate.log}
+
+]]
