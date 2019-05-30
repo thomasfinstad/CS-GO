@@ -19,6 +19,8 @@ if [ "$action" == "on" ]; then
     nvidia-settings -l --config=~/.nvidia-settings-rc-csgo
     output "Nvidia: CSGO config"
 
+    terminator -e ./csgo-translator &
+
 #    echo "touch: csgo_console.log"
 #    touch csgo/csgo_console.log
 #    echo "$(tail -n 5000 csgo/csgo_console.log)" > csgo/csgo_console.log
