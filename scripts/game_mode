@@ -19,7 +19,8 @@ if [ "$action" == "on" ]; then
     nvidia-settings -l --config=~/.nvidia-settings-rc-csgo
     output "Nvidia: CSGO config"
 
-    terminator -e ./csgo-translator &
+    echo "Starting CSGO Translator"
+    terminator -e ./csgo-translator_linux64 &
 
 #    echo "touch: csgo_console.log"
 #    touch csgo/csgo_console.log
@@ -50,7 +51,8 @@ elif [ "$action" == "off" ]; then
     nvidia-settings -l --config=~/.nvidia-settings-rc
     output "Nvidia: Normal config"
 
-#    echo "Killing background processes"
+    echo "Killing background processes"
+    killall csgo-translator_linux64
 #    for ppid in $(cat pids); do
 #        pstree -p $ppid
 #        for pid in $(pgrep -P $ppid | tr ' ' '\n' | tac); do 
