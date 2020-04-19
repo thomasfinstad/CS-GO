@@ -1,26 +1,83 @@
 #!/bin/bash
 
-export PATH="/home/thomas/bin:/home/thomas/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
-export LD_PRELOAD=""
 
-term="$(which konsole)"
-action=$1
-message="Changes:"
-output () {
-    message="$message\n$1"
+VERSION="0.1"
+USAGE="$(cat <<USAGE_DOC
+ruleset, version ${VERSION}
+Usage: ruleset [-h] [-l] <profile> <action>
+
+Used to enable rulesets for different tasks.
+
+Commands:
+    profile
+        Can be the name of the game, application, or what ever else you have configured in the config file
+
+    action
+        Can be set with the following values:
+            on : enables modules for the selected profile
+            off : disables modules for the selected profile
+            list : lists configured modules for the selected profile
+
+Options:
+    -h
+        Print this help message
+
+    -l
+        List all possible modules that can be enabled
+    -t
+        Test that all requirements are installed and set up
+
+Config file:
+    The config file will be sourced into the main file as the last file to source.
+    This means you can use bash to generate your config, or overwrite other internals,
+    or completely break it if you dont stick to just writing normal configs as exampled below.
+
+    The config file has a simple bash array structure where the profile name is in the array name prefixed by RULESET_ with no spaces.
+    The content of the array is a string formated like this: <module name> [parameter] [parameter..]
+
+    Example config file:
+        RULESET_example_profile_one=("module_1 parameter1")
+        RULESET_example_profile_two=("module_2")
+        RULESET_yet_another_profile=("module_1 different_parameter" "module_2")
+
+USAGE_DOC
+)"
+
+main() {
+    local profile="$1"
+    local action="$2"
+
+
 }
 
-if [ "$action" == "on" ]; then
+if [ "$#" -ne "2" ]; then
+    echo "$USAGE" >&2
+    exit 1
+fi
 
-    echo "" > pids
+main $@
 
-    echo "performance" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
-    output "governor: $(cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor | uniq)"
-    nvidia-settings -l --config=~/.nvidia-settings-rc-csgo
-    output "Nvidia: CSGO config"
+#export PATH="/home/thomas/bin:/home/thomas/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+#export LD_PRELOAD=""
 
-    echo "Starting CSGO Translator"
-    terminator -e ./csgo-translator_linux64 &
+#term="$(which konsole)"
+#action=$1
+#message="Changes:"
+#output () {
+#    message="$message\n$1"
+#}
+
+#if [ "$action" == "on" ]; then
+
+#    echo "" > pids
+
+#    echo "performance" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+#    output "governor: $(cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor | uniq)"
+#    nvidia-settings -l --config=~/.nvidia-settings-rc-csgo
+ #   output "Nvidia: CSGO config"
+
+#    echo "Starting CSGO Translator"
+#    terminator -e ./csgo-translator_linux64 &
 
 #    echo "touch: csgo_console.log"
 #    touch csgo/csgo_console.log
@@ -45,14 +102,14 @@ if [ "$action" == "on" ]; then
  #   echo $eval_pid >> pids
 
 
-elif [ "$action" == "off" ]; then
-    echo "powersave" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
-    output "governor: $(cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor | uniq)"
-    nvidia-settings -l --config=~/.nvidia-settings-rc
-    output "Nvidia: Normal config"
+#elif [ "$action" == "off" ]; then
+#    echo "powersave" | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+#    output "governor: $(cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor | uniq)"
+#    nvidia-settings -l --config=~/.nvidia-settings-rc
+#    output "Nvidia: Normal config"
 
-    echo "Killing background processes"
-    killall csgo-translator_linux64
+#    echo "Killing background processes"
+#    killall csgo-translator_linux64
 #    for ppid in $(cat pids); do
 #        pstree -p $ppid
 #        for pid in $(pgrep -P $ppid | tr ' ' '\n' | tac); do 
@@ -62,7 +119,7 @@ elif [ "$action" == "off" ]; then
 #        echo "killing parent ($ppid): $(cat /proc/$ppid/cmdline | tr '\000' ' ')"
 #        kill $ppid
 #    done
-fi
+#fi
 
-echo -e "Game mode: $action" "$message"
-notify-send "Game mode: $action" "$message"
+#echo -e "Game mode: $action" "$message"
+#notify-send "Game mode: $action" "$message"
